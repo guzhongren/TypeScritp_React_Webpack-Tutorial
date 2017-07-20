@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>props&state</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        var WebSite = React.createClass({
+            getDefaultProps: function() {
+                return {
+                    name: "react教程",
+                    site: window.location.href
+                };
+            },
+            getInitialState: function() {
+                return {
+                    name: this.props.name,
+                    site: this.props.site
+                };
+            },
+            
+            render: function() {
+                return (
+                <div>
+                    <Name name={this.state.name} />
+                    <Link site={this.state.site} />
+                </div>
+                );
+            }});
+        var Name = React.createClass({
+            render: function() {
+                return (
+                <h1>{this.props.name}</h1>
+                );
+            }});
+            
+        var Link = React.createClass({
+            render: function() {
+                return (
+                <a href={this.props.site}>
+                    {this.props.site}
+                </a>
+                );
+            }});
+        ReactDOM.render(
+            // <WebSite />,
+            <WebSite name="rrr" site="sdfsdf"/>,
+            document.getElementById('root'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Component</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+    interface CounterProps{
+        initialCount?:number;
+    }
+    interface CounterState{
+        initialCount?:number;
+    }
+    class Counter extends React.Component<CounterProps, CounterState> {
+        constructor(props:CounterProps, state:CounterState) {
+            super(props, state);
+            this.state = {
+                count: this.props.initialCount
+                };
+        }
+        tick() {
+            this.setState({
+                count: this.state.count + 1
+            });
+        }
+        render() {
+            return (
+            <div onClick={this.tick.bind(this)}>
+                Clicks: {this.state.count}
+            </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+      <Counter initialCount={0}/>,
+      document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>
